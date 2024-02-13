@@ -25,13 +25,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import Modal from "../components/Modal";
 import { TextInput } from "react-native";
 
-const SafetyTime = () => {
+const SafetyTimer = () => {
   const navigation = useNavigation();
   const [isSafetyTimeModal, setIsSafetyTimeModal] = useState(false);
   // const [circle1Scale] = useState(new Animated.Value(1));
   // const [circle2Scale] = useState(new Animated.Value(1));
   const [circle3Scale] = useState(new Animated.Value(1));
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(10);
 
   const animateCircles = () => {
     Animated.sequence([
@@ -47,7 +47,7 @@ const SafetyTime = () => {
       // }),
       Animated.timing(circle3Scale, {
         toValue: 0,
-        duration: 3000,
+        duration: 2000,
         useNativeDriver: true,
       }),
     ]).start(() => {
@@ -62,7 +62,16 @@ const SafetyTime = () => {
   useEffect(() => {
     animateCircles(); // Start circle animation on component mount
     const timerInterval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer - 1); // Decrement timer every second
+      setTimer((prevTimer) => {
+        // Decrement timer every second
+        if (prevTimer === 0) {
+          clearInterval(timerInterval); // Stop the timer when it reaches 00:00
+          onSafetyTimeModal();
+          return 0;
+        } else {
+          return prevTimer - 1;
+        }
+      });
     }, 1000);
     return () => clearInterval(timerInterval); // Clear interval on component unmount
   }, []);
@@ -127,7 +136,7 @@ const SafetyTime = () => {
                           alignItems: "center",
                         }}
                       >
-                        <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                        <Text className="text-3xl font-bold text-white">
                           {timer < 10 ? `00:0${timer}` : `00:${timer}`}
                         </Text>
                       </View>
@@ -153,7 +162,10 @@ const SafetyTime = () => {
             <View className="flex space-y-2">
               <View className="flex flex-row justify-between">
                 <Text className="font-bold">User Last Location</Text>
-                <Text className="font-bold text-red-500">1 min left</Text>
+                <Text className="text-xl font-bold text-red-500">
+                  {" "}
+                  {timer < 10 ? `00:0${timer}` : `00:${timer}`} left
+                </Text>
               </View>
               <View className=" rounded-3xl bg-[#dcd9e2] px-4 py-4 flex flex-row items-center space-x-3">
                 <Ionicons name="location-outline" size={30} color="#121418" />
@@ -165,26 +177,29 @@ const SafetyTime = () => {
                 onClickToggleModal={onSafetyTimeModal}
                 className="flex space-y-2 h-auto"
               >
-                <Text className="font-bold text-lg pb-2">SOS Message</Text>
-                <Text className="font-semibold">
-                  We Will Send This Msg to the Buddy Guard :
+                <Text className="font-bold text-lg pb-2">
+                  User Personal Information
+                </Text>
+                <Text className="font-bold leading-5 text-red-500 mb-2">
+                  Your safety timer has expired. Your personal information has
+                  been sent to the Buddy Guard to help with your rescue.{" "}
                 </Text>
                 <View className="bg-yellow-400 w-30 h-34 mb-3 flex justify-center space-y-2 p-3 rounded-lg">
+                  <Text className="font-bold">Full Name : Nadia Lee</Text>
                   <Text className="font-bold">
-                    SOS Time: 21:34, February 21st, 2024
+                    Contact Number : 987-232-1829
                   </Text>
                   <Text className="font-bold">
-                    SOS Location Link : 1212st, Bogota, Colombia
+                    Last Location: 1212st, Bogota, Colombia
                   </Text>
                   <Text className="font-bold">
-                    Personal Contact Number : 987-232-1829
+                    Personal Contact: 987)456-1877
                   </Text>
                 </View>
                 <View className="my-3">
                   <Text className="text-red-500 font-bold leading-5 ">
-                    Help will be on the way soon. If possible, provide any
-                    additional information or updates to the Buddy Guard Group
-                    once they arrive
+                    Help will be on the way soon. If you are safe, please
+                    contact your buddy group to inform them of your status!
                   </Text>
                 </View>
                 {/* <TextInput
@@ -210,7 +225,7 @@ const SafetyTime = () => {
                       fontWeight: "bold",
                     }}
                   >
-                    Send SOS Message Now
+                    Close
                   </Text>
                 </TouchableOpacity>
               </Modal>
@@ -252,7 +267,7 @@ const SafetyTime = () => {
                   <FontAwesome name="commenting" size={50} color={"#CAC6D1"} />
                 </View> */}
 
-              <TouchableOpacity onPress={onSafetyTimeModal}>
+              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                 <LinearGradient
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
@@ -271,7 +286,7 @@ const SafetyTime = () => {
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+              <TouchableOpacity>
                 <LinearGradient
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
@@ -298,4 +313,4 @@ const SafetyTime = () => {
   );
 };
 
-export default SafetyTime;
+export default SafetyTimer;

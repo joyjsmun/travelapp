@@ -3,6 +3,7 @@ export { default as Home } from "./Home";
 // hangout
 export { default as Hangout } from "./Hangout";
 export { default as HangoutDetail } from "./HangooutDetail";
+export { default as HangoutCreate } from "./HangoutCreate";
 
 // walk to home
 export { default as WalkRequestInfo } from "./WalkRequestInfo";
@@ -15,7 +16,7 @@ export { default as SupportConfirm } from "./SupportConfirm";
 export { default as SupportStatus } from "./SupportStatus";
 
 //Safety Time
-export { default as SafetyTime } from "./SafetyTime";
+export { default as SafetyTimer } from "./SafetyTimer";
 
 // User B
 export { default as AcceptRequest } from "./AcceptRequest";

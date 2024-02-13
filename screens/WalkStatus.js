@@ -6,7 +6,12 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import React, { useLayoutEffect, useCallback, useState } from "react";
+import React, {
+  useLayoutEffect,
+  useCallback,
+  useState,
+  useEffect,
+} from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   Feather,
@@ -25,6 +30,13 @@ const WalkStatus = () => {
   const onSosRequestModal = useCallback(() => {
     setIsSosModal(!isSosModal);
   }, [isSosModal]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.navigate("SafetyTimer");
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [navigation]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -177,7 +189,7 @@ const WalkStatus = () => {
                 </LinearGradient>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => navigation.navigate("SafetyTime")}
+                onPress={() => navigation.navigate("SafetyTimer")}
               >
                 <LinearGradient
                   start={{ x: 0, y: 0 }}

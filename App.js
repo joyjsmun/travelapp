@@ -9,9 +9,11 @@ import React, { useEffect, useState } from "react";
 import {
   AcceptRequest,
   Hangout,
+  HangoutCreate,
   HangoutDetail,
   Profile,
   SafetyTime,
+  SafetyTimer,
   SupportConfirm,
   SupportRequestInfo,
   SupportStatus,
@@ -48,9 +50,12 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen name="Home" component={Home} />
+
         <Stack.Screen name="Hangout" component={Hangout} />
         <Stack.Screen name="HangoutDetail" component={HangoutDetail} />
         <Stack.Screen name="HangoutSwipe" component={HangoutSwipe} />
+        <Stack.Screen name="HangoutCreate" component={HangoutCreate} />
+
         <Stack.Screen name="WalkRequestInfo" component={WalkRequestInfo} />
         <Stack.Screen name="WalkConfirm" component={WalkConfirm} />
         <Stack.Screen name="WalkStatus" component={WalkStatus} />
@@ -63,7 +68,7 @@ export default function App() {
 
         <Stack.Screen name="AcceptRequest" component={AcceptRequest} />
 
-        <Stack.Screen name="SafetyTime" component={SafetyTime} />
+        <Stack.Screen name="SafetyTimer" component={SafetyTimer} />
 
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
