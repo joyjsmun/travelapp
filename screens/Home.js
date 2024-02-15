@@ -61,11 +61,15 @@ const Home = () => {
               {/* timeline */}
               <View className="basis-[11%] w-full h-14 flex justify-center items-center space-y-20 mt-12 mr-2 ">
                 {hangoutImages.map((image, index) => (
-                  <LinearGradient
+                  <View
                     key={index}
-                    colors={["#FF5757", "#FF5757"]}
-                    className="rounded-full w-5 h-5"
-                  ></LinearGradient>
+                    className="rounded-full w-5 h-5 bg-[#FF5757] flex justify-center items-center"
+                  >
+                    <View
+                      key={index}
+                      className="rounded-full w-2 h-2 bg-white"
+                    ></View>
+                  </View>
                 ))}
               </View>
               {/* event list */}

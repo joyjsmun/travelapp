@@ -1,5 +1,6 @@
 export { default as StartScreen } from "./StartScreen";
 export { default as Home } from "./Home";
+export { default as Onboarding } from "./Onboarding";
 // hangout
 export { default as Hangout } from "./Hangout";
 export { default as HangoutDetail } from "./HangooutDetail";

@@ -14,10 +14,8 @@ const SwipeButton = () => {
         alignItems: "center",
       }}
     >
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        colors={["#FF5757", "#FF5757"]}
+      <View
+        className="bg-[#FF5757]"
         style={{
           width: "98%",
           height: 60,
@@ -27,7 +25,7 @@ const SwipeButton = () => {
         }}
       >
         <Text className="text-white font-bold text-2xl">Swipe Hangout</Text>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };

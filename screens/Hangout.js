@@ -8,12 +8,7 @@ import {
 } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-import {
-  Entypo,
-  FontAwesome,
-  Ionicons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Hangout1, Hangout2, Hangout3, Hangout4 } from "../assets/images";
 import SwipeButton from "../components/SwipeButton";
 
@@ -52,8 +47,10 @@ const Hangout = () => {
                 onPress={() => navigation.navigate("HangoutCreate")}
                 className="flex flex-row items-center"
               >
-                <Ionicons name="create-outline" size={26} />
-                <Text className="font-semibold">Create Hangout</Text>
+                <Ionicons name="create-outline" size={26} color={"#FF5757"} />
+                <Text className="font-semibold text-red-500">
+                  Create Hangout
+                </Text>
               </TouchableOpacity>
             </View>
 

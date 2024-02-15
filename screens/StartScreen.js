@@ -36,7 +36,7 @@ const StartScreen = () => {
         </Text>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Onboarding")}
         className="absolute bottom-20 w-24 h-24 border-r-2 border-l-2 border-t-4 border-[#FE8606] rounded-full items-center justify-center"
       >
         <Animatable.View
